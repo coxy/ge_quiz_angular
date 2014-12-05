@@ -1,0 +1,7 @@
+<div resize-section class="section images-section c{{position}}">
+  <div resize-squares class="square" ng-repeat="image in question.images">
+    <div class="image-wrap" ng-class="{selected: is_selected($index), correct: is_correct(image), incorrect: is_incorrect(image)}">
+      <div class="img" ng-style="{'background-image':'url('+ image.image_url + ')'}" fast-click="select($index)"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.main{
+  left: 100%;
+}
+.main.active{
+  left: 0;
+}
+.main.active-add, .main.active-remove{
+  transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  display:block!important;
+}
+.main.active-add{
+  left: 100%;
+}
+.main.active-add-active{
+  left: 0;
+}
+.main.active-remove{
+  left: 0;
+}
+.main.active-remove-active{
+  left: -100%;
+}

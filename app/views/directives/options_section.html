@@ -1,0 +1,12 @@
+<div class="section options-section c{{position}}">
+  <div class="fi">
+    <div class="options-wrap">
+        <div class="option-wrap" ng-repeat="option in question.options" ng-class="{selected: is_selected($index), correct: is_correct(option), incorrect: is_incorrect(option)}">
+          <a href="" class="plain" fast-click="select($index)">
+            <i class="fa" ng-class="{'fa-check-square': is_selected($index),'fa-square': !is_selected($index)}"></i>
+            <span class="option-text">{{option.option}}</span>
+          </a>
+        </div>
+    </div>
+  </div>
+</div>

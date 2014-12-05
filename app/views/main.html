@@ -1,0 +1,78 @@
+<header>
+  <div class="table">
+    <div class="cell">
+      <div class="progress"><span class="progress-{{quiz.current_index}}"></span></div>
+    </div>
+  </div>
+</header>
+
+<question ng-repeat="question in quiz.questions" index="{{$index}}" 
+  question="question" show-when="quiz.current_index == $index">
+  
+  <div class="question type{{question.type}}" ng-if="question.type == 1">
+    <audio_section position="1" question="question"></audio_section>
+    <input_section position="2" question="question"></input_section>
+    <feedback_section position="3" question="question"></feedback_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 2">
+    <audio_section position="1" question="question"></audio_section>
+    <options_section position="2" question="question"></options_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 3">
+    <audio_section position="1" question="question"></audio_section>
+    <images_section position="2" question="question"></images_section>
+    <feedback_section position="3" question="question"></feedback_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 4">
+    <dummy_section></dummy_section>
+    <image_section position="1" question="question"></image_section>
+    <input_section position="2" question="question"></input_section>
+    <feedback_section position="3" question="question"></feedback_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 5">
+    <dummy_section></dummy_section>
+    <image_section position="1" question="question"></image_section>
+    <options_section position="2" question="question"></options_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 6">
+    <text_section position="1" question="question"></text_section>
+    <images_section position="2" question="question"></images_section>
+    <dummy_section></dummy_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 7">
+    <text_section position="1" question="question"></text_section>
+    <input_section position="2" question="question"></input_section>
+    <feedback_section position="3" question="question"></feedback_section>
+  </div>
+  <div class="question type{{question.type}}" ng-if="question.type == 8">
+    <text_section position="1" question="question"></text_section>
+    <options_section position="2" question="question"></options_section>
+  </div>
+
+</question>
+
+<question show-when="quiz.is_complete()">
+  <div class="question">
+  <div class="section results-section">
+    <div class="fi">
+      <div class="final-score"><div class="starburst"><span><span><span>{{quiz.final_score()}}%</span></span></span></div></div>
+      <div class="results-message">{{quiz.results_message()}}</div>
+    </div>
+  </div>
+  </div>
+</question>
+
+<footer>
+  <div class="table">
+    <div class="cell">
+      <button class="pure-button" fast-click="quiz.close()" ng-show="quiz.show_close_button()"><i class="fa fa-times fa-fw left"></i> Close</button>
+      <button class="pure-button" fast-click="quiz.check()" ng-show="quiz.show_check_button()" ng-disabled="quiz.is_guest">Check <i class="fa fa-check fa-fw"></i></button>
+      <button class="pure-button" fast-click="quiz.next()" ng-show="quiz.show_next_button()">Next <i class="fa fa-long-arrow-right fa-fw"></i></button>
+      <button class="pure-button" fast-click="quiz.restart()" ng-show="quiz.show_restart_button()">Try again <i class="fa fa-repeat fa-fw"></i></i></button>
+    </div>
+  </div>
+</footer>
+
+<div class="loading-indicator" ng-hide="quiz.loaded"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+<div class="lock-overlay" ng-show="quiz.is_guest"></div>
+<div class="lock" ng-show="quiz.is_guest"><i class="fa fa-lock"></i></div>

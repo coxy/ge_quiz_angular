@@ -1,0 +1,192 @@
+html{
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+*:focus,a,a:link,a:active,a:visited {
+  outline: 0;
+}
+
+.table{
+  display: table;
+  width: 100%;
+}
+
+.row{
+  display: table-row;
+}
+
+.cell{
+  display: table-cell;
+}
+
+.h100{
+  height: 100%;
+}
+
+.w100{
+  width: 100%;
+}
+
+body{
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+ // &:extend(.h100);
+  font: 16px "Effra",sans-serif;
+  font-weight: 100;
+  overflow: hidden;
+}
+// ios iPad landscape bugfix
+//@media (orientation:landscape) { html.ipad.ios7 > body { position: relative; height: 505px !important; bottom: 0 } }
+//
+.container{
+  &:extend(.h100);
+}
+
+header,footer,.main{
+  position: absolute;
+  &:extend(.w100);
+}
+
+header,footer{
+  height: 50px;
+  background: @blue;
+  > div {
+    &:extend(.table,.h100);
+    max-width: 1024px;
+    margin: 0 auto;
+    > div {
+      &:extend(.cell);
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 8px;
+    }
+  }
+}
+
+
+footer{
+  bottom: 0px;
+}
+
+label{
+  cursor: pointer;
+}
+
+.main{
+  top: 50px;
+  bottom: 50px;
+  &.correct{
+    background-color: @correct_bg;
+  }
+  &.incorrect{
+    background-color: @incorrect_bg;
+  }
+}
+
+@media @iPhone_landscape{
+  .main{
+    top: 0;
+    bottom: 0;
+  }
+  .main:after{
+    display: block;
+    content: "Sorry, currently we only support portrait mode on small screens!";
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    padding-top: 60px;
+    text-align: center;
+  }
+
+}
+.browsehappy{
+  display: none;
+}
+.no-flexbox_new{
+  .main{
+    top: 0;
+    bottom: 0;
+  }
+  .browsehappy{
+    position: absolute;
+    z-index: 1000;
+    &:extend(.h100,.w100);
+    background: #fff;
+    display: table;
+    > div{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      padding: 20px;
+    }
+  }
+}
+
+.window{
+  &:extend(.h100);
+  max-width: 1024px;
+  margin: 0 auto;
+  
+}
+.loading-indicator{
+  position: absolute;
+  z-index: 899;
+  &:extend(.h100,.w100);
+  display: table;
+  background: #fff;
+  .spinner-wrap{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    .spinner{
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: solid 30px;
+        border-radius: 5em;
+        border-color: @logo_blue transparent @logo_blue transparent;
+        animation: spin 1s linear infinite;
+    }
+   }
+}
+.lock-overlay{
+  position: absolute;
+  z-index: 898;
+  top: 50px;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.4;
+}
+.lock{
+   text-align: center;
+  .fa{
+    font-size: 200px;
+    line-height: 200px;
+    position: absolute;
+    opacity: 0.7;
+    top: 50%;
+    margin-top: -0.5em;
+    left: 50%;
+    margin-left: -0.5em;
+    z-index: 1001;
+    width: 1em;
+    height: 1em;
+    color: #fff;
+    text-shadow: 0 0 5px #000; /* Firefox 3.5+, Opera 9+, Safari 1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Glow(Color=#ffffff,Strength=1); /* IE<10 */
+  }
+}

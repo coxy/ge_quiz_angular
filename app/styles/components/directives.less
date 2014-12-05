@@ -1,0 +1,233 @@
+.question{
+  &:extend(.h100);
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  overflow-y: auto;
+}
+
+.section{
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 5px;
+  &:last-child,&.dummy{
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+  &:first-child,&.dummy + .section{
+    justify-content: flex-end;
+  }
+}
+
+.images-section,.image-section{
+  flex-grow: 0;
+  flex-shrink: 1;
+  display: flex;
+  justify-content: center !important;
+  flex-direction: row;
+  min-height: 100px;
+  height: 300px;
+  margin-bottom: 5px;
+  &:last-child{
+    justify-content: center;
+  }
+
+}
+
+.square{
+  width: 300px;
+  margin-left: 2%;
+  &:first-child{
+    margin-left: 0;
+  }
+  position: relative;
+}
+
+.image-wrap{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  border: 5px solid @lightblue;
+  @media @xs{
+    border-width: 3px;
+  }
+  overflow: hidden;
+  &.selected{
+    border-color: @blue;
+  }
+  &.correct{
+    border-color: @correct !important;
+  }
+  &.incorrect{
+    border-color: @incorrect !important;
+  }
+}
+.images-section .image-wrap{
+   cursor: pointer;
+}
+
+.img{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.options-section{
+  .options-wrap{
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left;
+    .option-wrap{
+      list-style: none;
+      cursor: pointer;
+      margin-bottom: 0.4em;
+      &.correct a.plain .option-text{
+        color: @correct;
+      }
+      &.incorrect a.plain .option-text{
+        color: @incorrect;
+      }
+      a.plain{
+        color: #000;
+        text-decoration: none;
+      }
+      .fa{
+        color: @lightblue;
+        line-height: 0.64;
+      }
+      .option-text{
+        margin-left: 0.2em;
+      }
+      &.selected{
+        color: @blue;
+        .fa {
+          color: @blue;
+        }
+      }
+    }
+  }
+}
+
+.options-section{
+   margin-top: 4%;
+    //justify-content: center;
+}
+
+.audio-section{
+  .play-button{
+    font-size: 3em;
+    color: @blue;
+    &:active,&:visited{
+      color: @blue;
+    }
+    &:hover{
+      color: darken(@blue,10%);
+    }
+  }
+}
+
+.feedback-section{
+  font-weight: 400;
+  color: @correct;
+  justify-content: flex-start;
+  .feedback-wrap{
+    opacity: 0;
+      &.visible{
+      opacity: 1;
+    }
+  }
+}
+
+.input-section{
+  input{
+    -webkit-appearance: none;
+    font-family: "Effra";
+    font-weight: 100;
+    padding: 1.5em 0.5em 1.5em 0.5em;
+    width: 100%;
+    max-width: 568px;
+    border-radius: 0.3em;
+    border: 2px solid @lightblue;
+    text-align: center;
+    outline: 0;
+    background: #fff;
+    -webkit-opacity: 1;
+    &.correct{
+      font-weight: 400;
+      color: @correct;
+      -webkit-text-fill-color: @correct; 
+      border-color: @correct;
+    }
+    &.incorrect{
+      font-weight: 400;
+      color: @incorrect;
+      border-color: @incorrect;
+      -webkit-text-fill-color: @incorrect; 
+    }
+  }
+}
+input::-ms-clear {
+  display: none;
+}
+.text-section{
+  &:first-child{
+    margin-bottom: 4%;
+  }
+  .text-wrap{
+    font-size: 1.2em;
+    b{
+      font-weight: 400;
+    }
+    span.missing{
+      text-indent: -9999px;
+      overflow: hidden;
+      border-bottom: 1px dotted @grey;
+      vertical-align: bottom;
+      font-weight: 400;
+      color: @correct;
+      > span{
+        opacity: 0;
+      }
+    }
+  }
+  &.checked .text-wrap span.missing > span{
+    opacity: 1;
+  }
+}
+.results-section{
+  flex: 1;
+  &:first-child{
+    justify-content: center;
+  }
+  .final-score{
+    margin-bottom: 3em;
+  }
+  .starburst {
+    width:3.5em;
+    height:3.5em;
+    display: inline-block;
+    background: @logo_blue;
+    transform:rotate(-90deg);
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    font-weight: 400;
+    font-size: 1.5em;
+  }
+  .starburst span {
+    display:block;
+    width:3.5em;
+    height:3.5em;
+    line-height: 3.5em;
+    background:@logo_blue;
+    transform: rotate(22.5deg);
+  }
+}

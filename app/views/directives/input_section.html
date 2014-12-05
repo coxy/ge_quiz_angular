@@ -1,0 +1,13 @@
+<div class="section input-section c{{position}}">
+  <div class="fi">
+    <div class="input-wrap">
+      <input
+        type="text"
+        class="input"
+        ng-class="{correct: question.correct === true,incorrect: question.correct === false}"
+        placeholder="Type an answer..."
+        ng-model="question.answer"
+        ng-disabled="question.checked" />
+    </div>
+  </div>
+</div>
